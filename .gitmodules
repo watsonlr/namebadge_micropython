@@ -1,0 +1,9 @@
+# .gitmodules - Git submodules configuration
+#
+# This file defines the MicroPython submodule that will be pulled
+# from the official MicroPython repository
+
+[submodule "micropython"]
+	path = micropython
+	url = https://github.com/micropython/micropython.git
+	branch = master

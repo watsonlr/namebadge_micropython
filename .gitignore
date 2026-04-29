@@ -1,0 +1,40 @@
+# .gitignore - Files and directories to exclude from version control
+
+# Build artifacts
+build/
+sdkconfig
+sdkconfig.old
+*.o
+*.a
+*.elf
+*.bin
+*.map
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# ESP-IDF specific
+dependencies.lock
+managed_components/
+
+# MicroPython compiled files
+*.mpy
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+tmp/
+temp/
