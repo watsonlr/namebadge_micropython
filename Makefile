@@ -28,6 +28,9 @@ help:
 	@echo "  make size           - Show binary sizes"
 	@echo "  make bootloader     - Rebuild bootloader only"
 	@echo ""
+	@echo "Deployment:"
+	@echo "  make deploy-ota     - Deploy to bootloader OTA system"
+	@echo ""
 	@echo "Configuration:"
 	@echo "  PORT=$(PORT)   - Serial port"
 	@echo "  BAUD=$(BAUD)   - Monitor baud rate"
@@ -89,3 +92,12 @@ app:
 .PHONY: partition-table
 partition-table:
 	idf.py partition-table
+
+.PHONY: deploy-ota
+deploy-ota: build
+	@echo "Deploying to bootloader OTA system..."
+	@if [ -z "$(BOOTLOADER_PATH)" ]; then \
+		./deploy_ota.sh; \
+	else \
+		./deploy_ota.sh $(BOOTLOADER_PATH); \
+	fi

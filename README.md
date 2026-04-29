@@ -62,6 +62,36 @@ idf.py -p /dev/ttyUSB0 flash monitor
 
 On Windows, use `COM3` instead of `/dev/ttyUSB0`.
 
+## Deploy as OTA App
+
+To make MicroPython REPL available as a selectable app from the bootloader:
+
+```bash
+# Build the app
+idf.py build
+
+# Deploy to bootloader OTA directory
+./deploy_ota.sh /path/to/namebadge_bootloader
+
+# Start OTA server (from bootloader repo)
+cd /path/to/namebadge_bootloader/ota_files
+python3 -m http.server 8000
+```
+
+Then from the badge app selector:
+1. Connect to WiFi
+2. Browse apps → Select "MicroPython REPL"
+3. Download and install
+4. Boot into Python REPL
+
+To return to the app menu from MicroPython:
+```python
+>>> from badge import return_to_menu
+>>> return_to_menu()
+```
+
+See **[OTA_INTEGRATION.md](docs/OTA_INTEGRATION.md)** for complete details.
+
 ## Using the REPL
 
 Connect to the serial port at 115200 baud. You'll see the MicroPython prompt:
@@ -106,6 +136,8 @@ while True:
 
 ## Documentation
 
+- **[QUICKSTART.md](QUICKSTART.md)** - Get started in 5 minutes
+- **[OTA_INTEGRATION.md](docs/OTA_INTEGRATION.md)** - Deploy as bootloader app
 - **[MICROPYTHON_SETUP.md](docs/MICROPYTHON_SETUP.md)** - Complete setup guide
 - **[EXAMPLES.md](docs/EXAMPLES.md)** - Code examples and projects
 - **[HARDWARE.md](docs/HARDWARE.md)** - Hardware specifications and pinout
